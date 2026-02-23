@@ -1,1 +1,7 @@
-[]
+{
+       "12345": {
+        "name": "Jake",
+        "password": "12345",
+        "locked": false
+    }
+}
