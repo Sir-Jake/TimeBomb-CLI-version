@@ -24,7 +24,7 @@ class Game:
         print("TIMER ")
         print("="*40)
         
-        task = input("\nTask: ")
+        task = input("Task: ")
         mins = input("Minutes (25): ")
         mins = 25 if mins == "" else int(mins)
         
