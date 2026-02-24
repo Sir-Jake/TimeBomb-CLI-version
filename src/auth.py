@@ -2,14 +2,30 @@
 from time import sleep
 import storage
 
+#Account creation
+def new_account():
+    name = input("Enter your name : ")
+    password = input("Enter your password : ")
+    acc_id = int(input("Enter your account ID : "))
+    
+    account = {
+        "name": name,
+        "password": password,
+        "acc_id": acc_id,
+        "locked": False
+    }
+    storage.save_account(acc_id, account)
+    print("Account created successfully.")
+    return account
+
 #login 
-def login(attempts = 0, account = None, login_attempts = 1  ):
+def login(attempts = 0, account = None ):
     
     if attempts >= 4:
         print("Maximum attempts reached.")
         print("Contact Jake [> _ *]")
         account["locked"] = True
-        storage.save_account(account)
+        storage.save_account(acc_id, account)
         return None
 
     acc_id = input("Enter Account ID no. : ")
@@ -21,8 +37,8 @@ def login(attempts = 0, account = None, login_attempts = 1  ):
         return login(attempts + 1)
 
     print("Game Login")
-    print("Attempt no." ,attempts)
-    password=input("Enter account password")
+    print(f"Attempts : {attempts + 1}")
+    password=input("Enter account password: ")
 
     if account["locked"]:
         print("Account is locked.")
@@ -30,11 +46,31 @@ def login(attempts = 0, account = None, login_attempts = 1  ):
 
     if account["password"] != password:
         print("Incorrect password.")
+        sleep(2)
         return login(attempts + 1)
 
     print("___________Welcome____________")
-    print(f"{account['name']}")
+    print(f"{account['name']} has logged in successfully.")
     print("___________Welcome____________")
     return account
     
-login()
+#Entry point - choose login or signup
+def authenticate():
+    print("========= TimeBomb CLI ============")
+    print("1.Work/Play Login")
+    print("2.Create Account")
+    print("===================================")
+    
+    choice = input("Choose one... (1 or 2): ")
+
+    if choice == "1":
+        return login()
+    elif choice == "2":
+        return new_account()
+    else:
+        print("Invalid option. Go away.")
+        sleep(10)
+        return authenticate()
+
+if __name__ == "__main__":
+    authenticate()

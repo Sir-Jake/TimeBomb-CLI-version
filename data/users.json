@@ -1,7 +1,12 @@
 {
-       "12345": {
-        "name": "Jake",
+    "name": "Onyango",
+    "password": "12345",
+    "acc_id": 88888,
+    "locked": false,
+    "0": {
+        "name": "Jayy",
         "password": "12345",
+        "acc_id": 0,
         "locked": false
     }
 }

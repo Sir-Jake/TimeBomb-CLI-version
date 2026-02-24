@@ -7,7 +7,12 @@ def load_account(acc_id):
         return accounts.get(acc_id)
 
 #saving account
-def save_account(account):
+def save_account(acc_id, account):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+    
+    accounts[str(acc_id)] = account
+
     with open("data/users.json", "w") as f:
-        dump(account, f)
+        dump(accounts, f, indent=4)
     
