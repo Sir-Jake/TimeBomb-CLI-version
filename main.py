@@ -7,9 +7,9 @@ def login():
     return {"name": name, "health": 100}
 
 
-class Game:
-    def run(self):
-        print("Game starting...")
+class Player:
+    def __init__(self, name): self.name = name; self.health = 100
+    def take_damage(self, amt): self.health -= amt; print(f"Health: {self.health}")
 
 # ===== MAIN GAME =====
 class Game:
@@ -44,6 +44,27 @@ class Game:
             print(" ABORTED!")
             self.player.take_damage(20)
             input("Enter to continue...")
+
+    def run(self):
+        while True:
+            self.clear()
+            if not self.player:
+                print("1. Login\n2. Exit")
+                c = input("Choice: ")
+                
+                if c == "1": 
+                    self.player = login()
+                elif c == "2": 
+                    sys.exit()
+            else:
+                print(f"{self.player.name} |  {self.player.health}")
+                print("1. Start Timer\n2. Logout")
+                c = input("Choice: ")
+                
+                if c == "1": 
+                    self.timer()
+                elif c == "2": 
+                    self.player = None
 
 
 if __name__ == "__main__":
