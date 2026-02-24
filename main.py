@@ -2,6 +2,10 @@ import os
 import sys
 import time
 
+def login():
+    name = input("Username: ")
+    return {"name": name, "health": 100}
+
 
 class Game:
     def run(self):
