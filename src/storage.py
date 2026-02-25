@@ -32,3 +32,9 @@ def save_json(filename,data):
 def get_users():
     data=load_json("users.json")
     return data
+
+#save users
+def save_users(users):
+    save_json("users.json",users)
+    
+
