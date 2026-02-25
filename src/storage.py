@@ -42,3 +42,10 @@ def get_tasks():
 
 def save_tasks(tasks):
     save_json("tasks.json",tasks)
+
+def move_file(filename,destination_folder):
+    source_file=os.path.join(DATA_DIR,filename)
+    if not os.path.exists(source_file):
+        print(f"File {filename} does not exist. Cannot move")
+        return
+        
