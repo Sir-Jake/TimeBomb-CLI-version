@@ -22,13 +22,8 @@ def load_json(filename):
         except json.JSONDecodeError:
             # If file is corrupted or empty return 
             return {}
-
-
-
-def move_files(working_dir,filename,prompt=True):
-    destination_path=os.path.join(working_dir,filename)
-    
-    source=os.path.join(working_dir,filename)
-
-    isdir=os.path.isdir(destination_path)
-
+# to save data to Json file
+def save_json(filename,data);
+    filepath=os.path.join(DATA_DIR,filename)
+    with open(filepath,"w") as f:
+        json.dump(data,f,indent=4)#convert python dic to json
