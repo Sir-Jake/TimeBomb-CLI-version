@@ -9,7 +9,7 @@ from src.models import Player, Task
 
 def main():
     # Create a player
-    player = Player("Noah")
+    player = Player("PlayerOne")
 
     print("Player created:")
     print(player)
@@ -20,7 +20,7 @@ def main():
     print(player)
 
     # Player heals
-    player.heal(10)
+    player.heal(5)
     print("\nAfter healing:")
     print(player)
 
@@ -30,7 +30,7 @@ def main():
     print(player)
 
     # Create a task
-    task = Task("Defuse Bomb", difficulty=15)
+    task = Task("Defuse Bomb", difficulty=10)
     print("\nTask created:")
     print(task)
 
