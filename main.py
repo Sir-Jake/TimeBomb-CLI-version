@@ -33,7 +33,7 @@ class Game:
         try:
             for i in range(mins * 60, 0, -1):
                 m, s = i//60, i%60
-                print(f" {m:02d}:{s:02d} ", end="", flush=True)
+                print(f" {m:02d}:{s:02d} ", end="\r")
                 time.sleep(1)
             
             print("DONE!")
@@ -67,6 +67,7 @@ class Game:
                 elif c == "2": 
                     self.player = None
 
+                    
 
-if __name__ == "__main__":
-    Game().run()
+Game().run()
+    

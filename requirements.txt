@@ -3,3 +3,4 @@ colorama
 # a menu after the game ends to ask if the user wants to play again
 #add feature that changes the color of the text in the terminal
 # add a feature that changes the single countdown from just listing the numbers of every second.
+#add a feature that list previours tasks so the user can choose from existing list of tasks instead of having to type in a new one every time
