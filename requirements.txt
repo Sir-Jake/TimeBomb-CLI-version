@@ -1,2 +1,5 @@
 pygame
 colorama
+# a menu after the game ends to ask if the user wants to play again
+#add feature that changes the color of the text in the terminal
+# add a feature that changes the single countdown from just listing the numbers of every second.

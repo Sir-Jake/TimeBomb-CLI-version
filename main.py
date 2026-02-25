@@ -4,7 +4,7 @@ import time
 
 def login():
     name = input("Username: ")
-    return {"name": name, "health": 100}
+    return Player(name)
 
 
 class Player:
@@ -38,7 +38,8 @@ class Game:
             
             print("DONE!")
             self.player.take_damage(10)
-            input("Enter to continue...")
+
+            input("press enter to continue...")
             
         except KeyboardInterrupt:
             print(" ABORTED!")
