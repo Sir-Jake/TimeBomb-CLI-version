@@ -5,12 +5,12 @@ import shutil
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
 
 def load_json(filename):
-    filepath=os.path.exists(DATA_DIR, filename)
-    #if file does not exit 
+    filepath=os.path.join(DATA_DIR, filename)
+    #if file does not exit create
     if not os.path.exists(filepath):
         with open(filepath, "w") as f:
             f.write("{}")
-    return {}
+        return {}
 
     with open(filepath, "r") as f:
         try:
@@ -38,7 +38,7 @@ def save_users(users):
     save_json("users.json",users)
 
 def get_tasks():
-    save_json("tasks.json",)
+    return load_json("tasks.json")
 
 def save_tasks(tasks):
     save_json("tasks.json",tasks)
@@ -64,10 +64,11 @@ if __name__ == "__main__":
     print("Users loaded:", users)
     print("Tasks loaded:",tasks)
     #adding a test user
-    users["player1"]={"health": 100, "score":0}
-    save_users(users)
-    print("Added player1 to users.json")
-    
+    #users["player1"]={"health": 100, "score":0}
+    #save_users(users)
+    #print("Added player1 to users.json")
+    move_file("users.json","backup")
+
 
      
 
