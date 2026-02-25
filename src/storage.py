@@ -22,8 +22,14 @@ def load_json(filename):
         except json.JSONDecodeError:
             # If file is corrupted or empty return 
             return {}
+
 # to save data to Json file
 def save_json(filename,data);
     filepath=os.path.join(DATA_DIR,filename)
     with open(filepath,"w") as f:
-        json.dump(data,f,indent=4)#convert python dic to json
+        json.dump(data,f,indent=4)#convert python dic to json ,indent add space
+
+def get_users():
+    data=load_json("users.json")
+    return data
+    
