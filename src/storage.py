@@ -55,5 +55,19 @@ def move_file(filename,destination_folder):
         os.makedirs(destination_folder)
         #moving the file to the new folder
     shutil.move(source_file,os.path.join(destination_folder,filename))
+    print(f"Moved {filename} to {destination_folder}")
+
+if __name__ == "__main__":
+    users=get_users()
+    tasks=get_tasks()
+
+    print("Users loaded:", users)
+    print("Tasks loaded:",tasks)
+    #adding a test user
+    users["player1"]={"health": 100, "score":0}
+    save_users(users)
+    print("Added player1 to users.json")
     
+
+     
 
