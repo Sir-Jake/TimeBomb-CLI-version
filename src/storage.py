@@ -36,5 +36,6 @@ def get_users():
 #save users
 def save_users(users):
     save_json("users.json",users)
-    
 
+def get_tasks():
+    save_json("tasks.json",tasks)
