@@ -1,15 +1,8 @@
 import os
 import sys
 import time
-
-def login():
-    name = input("Username: ")
-    return Player(name)
-
-
-class Player:
-    def __init__(self, name): self.name = name; self.health = 100
-    def take_damage(self, amt): self.health -= amt; print(f"Health: {self.health}")
+from src import auth, storage
+from src.models import Player
 
 # ===== MAIN GAME =====
 class Game:
@@ -18,6 +11,11 @@ class Game:
     
     def clear(self): os.system('clear')
 
+    def game_over(self):
+        if self.player.health <= 0:
+            print("GAME OVER")
+            sys.exit()
+
     def timer(self):
         self.clear()
         print("="*40)
@@ -25,7 +23,7 @@ class Game:
         print("="*40)
         
         task = input("Task: ")
-        mins = input("Minutes (25): ")
+        mins = input("Minutes: ")
         mins = 25 if mins == "" else int(mins)
         
         print(f"\n{task} - {mins}min. Ctrl+C to quit")
@@ -37,13 +35,14 @@ class Game:
                 time.sleep(1)
             
             print("DONE!")
-            self.player.take_damage(10)
+            self.player.take_damage(0)
 
             input("press enter to continue...")
             
         except KeyboardInterrupt:
             print(" ABORTED!")
             self.player.take_damage(20)
+            self.game_over()
             input("Enter to continue...")
 
     def run(self):
@@ -51,23 +50,23 @@ class Game:
             self.clear()
             if not self.player:
                 print("1. Login\n2. Exit")
-                c = input("Choice: ")
+                choice = input("Choice: ")
                 
-                if c == "1": 
-                    self.player = login()
-                elif c == "2": 
+                if choice == "1": 
+                    self.player = auth.authenticate()
+                elif choice == "2": 
                     sys.exit()
             else:
-                print(f"{self.player.name} |  {self.player.health}")
+                print(f"{self.player.username} |  {self.player.health}")
                 print("1. Start Timer\n2. Logout")
-                c = input("Choice: ")
+                choice = input("Choice: ")
                 
-                if c == "1": 
+                if choice == "1": 
                     self.timer()
-                elif c == "2": 
+                elif choice == "2": 
                     self.player = None
 
                     
-
-Game().run()
+if __name__ == "__main__":
+    Game().run()
     
