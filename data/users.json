@@ -8,5 +8,11 @@
         "password": "12345",
         "acc_id": 0,
         "locked": false
+    },
+    "1111": {
+        "name": "Boostah",
+        "password": "12345",
+        "acc_id": 1111,
+        "locked": false
     }
 }
