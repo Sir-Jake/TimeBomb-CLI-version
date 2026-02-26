@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from src.auth import authenticate
 
 def login():
     name = input("Username: ")
