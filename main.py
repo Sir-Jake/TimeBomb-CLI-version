@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-#from src.audio import init_audio, play_sound, play_music, stop_music
+from src.audio import init_audio, play_sound, play_music, stop_music
 from src import auth
 from src.models import Player
 
@@ -32,7 +32,7 @@ class Game:
         
         print(f"\n{task} - {mins}min. Ctrl+C to quit")
         
-        #init_audio()
+        init_audio()
         try:
             for seconds_left in range(mins * 60, 0, -1):
                 m, s = seconds_left//60, seconds_left%60
@@ -47,7 +47,7 @@ class Game:
                 if seconds_left == 600:
                     play_music("assets/tick.wav", loop=True)
                 if seconds_left == 5:
-                    play_music("assets/explosion.wav", loop=True)
+                    play_music("assets/explosion.mp3", loop=True)
 
                 time.sleep(1)
 
