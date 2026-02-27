@@ -1,7 +1,7 @@
 import os
 import sys
 import time
-
+#from src.audio import init_audio, play_sound, play_music, stop_music
 from src import auth
 from src.models import Player
 
@@ -17,6 +17,8 @@ class Game:
         if self.player.health <= 0:
             print("GAME OVER")
             sys.exit()
+      
+        
 
     def timer(self):
         self.clear()
@@ -30,12 +32,26 @@ class Game:
         
         print(f"\n{task} - {mins}min. Ctrl+C to quit")
         
+        #init_audio()
         try:
-            for i in range(mins * 60, 0, -1):
-                m, s = i//60, i%60
+            for seconds_left in range(mins * 60, 0, -1):
+                m, s = seconds_left//60, seconds_left%60
                 print(f" {m:02d}:{s:02d} ", end="\r")
+
+                if seconds_left == 120:
+                    play_music("assets/tick.wav", loop=True)
+                if seconds_left == 30:
+                    play_sound("assets/tick.wav")
+                if seconds_left == 10:
+                    play_sound("assets/tick.wav")
+                if seconds_left == 600:
+                    play_music("assets/tick.wav", loop=True)
+                if seconds_left == 5:
+                    play_music("assets/explosion.wav", loop=True)
+
                 time.sleep(1)
-            
+
+            stop_music()
             print("DONE!")
             self.player.take_damage(0)
 
@@ -60,7 +76,7 @@ class Game:
                     sys.exit()
             else:
                 print(f"{self.player.username} |  {self.player.health}")
-                print("1. Start Timer\n2. Logout")
+                print("1. Add Task\n2. Logout")
                 choice = input("Choice: ")
                 
                 if choice == "1": 

@@ -1,5 +1,4 @@
 from json import load, dump
-"""
 #loading account
 def load_account(acc_id):
     with open("data/users.json", "r") as f:
@@ -15,7 +14,7 @@ def save_account(acc_id, account):
 
     with open("data/users.json", "w") as f:
         dump(accounts, f, indent=4)
-    """
+
 import json
 import os
 import shutil
@@ -52,14 +51,20 @@ def get_users():
     return data
 
 #save users
+def add_tasks(task):
+    tasks=get_tasks()
+    tasks.append(task)
+    save_tasks(tasks)
+
 def save_users(users):
-    save_json("users.json",users)
-
+    storage.save_json("users.json",users)
+    print("Users saved successfully.")
 def get_tasks():
-    return load_json("tasks.json")
-
+    data=load_json("tasks.json")
+    return data
 def save_tasks(tasks):
-    save_json("tasks.json",tasks)
+    storage.save_json("tasks.json",tasks)
+    print("Tasks saved successfully.")
 
 def move_file(filename,destination_folder):
     source_file=os.path.join(DATA_DIR,filename)
