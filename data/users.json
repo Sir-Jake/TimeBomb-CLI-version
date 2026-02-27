@@ -14,5 +14,11 @@
         "password": "12345",
         "acc_id": 1111,
         "locked": false
+    },
+    "1234": {
+        "name": "hacker",
+        "password": "4321",
+        "acc_id": 1234,
+        "locked": false
     }
 }

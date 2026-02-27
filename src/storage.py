@@ -55,6 +55,17 @@ def get_users():
 def save_users(users):
     save_json("users.json",users)
 
+# Convenience functions expected by src.auth
+def load_account(acc_id):
+    users = get_users()
+    # account IDs may be stored as strings in JSON
+    return users.get(str(acc_id))
+
+def save_account(acc_id, account):
+    users = get_users()
+    users[str(acc_id)] = account
+    save_users(users)
+
 def get_tasks():
     return load_json("tasks.json")
 
