@@ -1,4 +1,4 @@
-Setup Instructions
+VENV Setup Instructions
 bash
 # 1. Clone the repo
 git clone https://github.com/Sir-Jake/TimeBomb-CLI-version.git
