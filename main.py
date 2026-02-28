@@ -4,6 +4,7 @@ import time
 from src.audio import init_audio, play_sound, play_music, stop_music
 from src import auth
 from src.models import Player
+from src.storage import add_task   # ✅ ADDED
 
 
 # ===== MAIN GAME =====
@@ -11,15 +12,14 @@ class Game:
     def __init__(self):
         self.player = None
     
-    def clear(self): os.system('clear')
+    def clear(self): 
+        os.system('clear')
 
     def game_over(self):
         if self.player.health <= 0:
             print("GAME OVER")
             sys.exit()
       
-        
-
     def timer(self):
         self.clear()
         print("="*40)
@@ -32,10 +32,20 @@ class Game:
         
         print(f"\n{task} - {mins}min. Ctrl+C to quit")
         
+        # ✅ SAVE TASK IMMEDIATELY WHEN CREATED
+        new_task = {
+            "task": task,
+            "minutes": mins,
+            "status": "completed"
+        }
+
+        add_task(self.player.acc_id, new_task)
+
         init_audio()
+
         try:
             for seconds_left in range(mins * 60, 0, -1):
-                m, s = seconds_left//60, seconds_left%60
+                m, s = seconds_left // 60, seconds_left % 60
                 print(f" {m:02d}:{s:02d} ", end="\r")
 
                 if seconds_left == 120:
@@ -87,4 +97,3 @@ class Game:
                     
 if __name__ == "__main__":
     Game().run()
-    

@@ -14,5 +14,11 @@
         "password": "12345",
         "acc_id": 1111,
         "locked": false
+    },
+    "7890": {
+        "name": "ETHICAL HACKING",
+        "password": "0987",
+        "acc_id": 7890,
+        "locked": false
     }
 }
