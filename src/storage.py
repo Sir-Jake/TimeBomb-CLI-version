@@ -1,20 +1,4 @@
 from json import load, dump
-#loading account
-def load_account(acc_id):
-    with open("data/users.json", "r") as f:
-        accounts = load(f)
-        return accounts.get(acc_id)
-
-#saving account
-def save_account(acc_id, account):
-    with open("data/users.json", "r") as f:
-        accounts = load(f)
-    
-    accounts[str(acc_id)] = account
-
-    with open("data/users.json", "w") as f:
-        dump(accounts, f, indent=4)
-
 import json
 import os
 import shutil
@@ -46,24 +30,47 @@ def save_json(filename,data):
     with open(filepath,"w") as f:
         json.dump(data,f,indent=4)#convert python dic to json ,indent add space
 
+#loading_account
+def load_account(acc_id):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+        return accounts.get(acc_id)
+
+#saving account
+def save_account(acc_id, account):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+    
+    accounts[str(acc_id)] = account
+
+    with open("data/users.json", "w") as f:
+        dump(accounts, f, indent=4)
+
 def get_users():
     data=load_json("users.json")
     return data
 
 #save users
-def add_tasks(task):
-    tasks=get_tasks()
-    tasks.append(task)
+def add_task(user_id, task):
+    tasks = get_tasks()
+
+    user_id = str(user_id)  # Ensure string key
+
+    if user_id not in tasks:
+        tasks[user_id] = []
+
+    tasks[user_id].append(task)
+
     save_tasks(tasks)
 
 def save_users(users):
-    storage.save_json("users.json",users)
-    print("Users saved successfully.")
+    save_json("users.json",users)
+
 def get_tasks():
     data=load_json("tasks.json")
     return data
 def save_tasks(tasks):
-    storage.save_json("tasks.json",tasks)
+    save_json("tasks.json",tasks)
     print("Tasks saved successfully.")
 
 def move_file(filename,destination_folder):

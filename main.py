@@ -1,9 +1,10 @@
 import os
 import sys
 import time
-from src.audio import init_audio, play_sound, play_music, stop_music
+from src.audio import init_audio, play_sound, play_music, stop_music, stop_all
 from src import auth
 from src.models import Player
+from src.storage import add_task
 
 
 # ===== MAIN GAME =====
@@ -30,38 +31,57 @@ class Game:
         mins = input("Minutes: ")
         mins = 25 if mins == "" else int(mins)
         
-        print(f"\n{task} - {mins}min. Ctrl+C to quit")
+        new_task = {
+            "task": task,
+            "minutes": mins,
+            "status": "completed"
+        }
+        add_task(self.player.acc_id, new_task)
+        #print(f"\n{task} - Ctrl+C to quit")
         
         init_audio()
-        try:
-            for seconds_left in range(mins * 60, 0, -1):
-                m, s = seconds_left//60, seconds_left%60
-                print(f" {m:02d}:{s:02d} ", end="\r")
 
-                if seconds_left == 120:
-                    play_music("assets/tick.wav", loop=True)
-                if seconds_left == 30:
-                    play_sound("assets/tick.wav")
-                if seconds_left == 10:
-                    play_sound("assets/tick.wav")
-                if seconds_left == 600:
-                    play_music("assets/tick.wav", loop=True)
-                if seconds_left == 5:
-                    play_music("assets/explosion.mp3", loop=True)
+        # loop allows extension of time
+        while True:
+            print(f"\n{task} - {mins}min. Ctrl+C to defuse")
 
-                time.sleep(1)
+            try:
+                # Start background music if timer is 3+ minutes
+                if mins >= 3:
+                    play_music("assets/smoothmusic.mp3", loop=True)
 
-            stop_music()
-            print("DONE!")
-            self.player.take_damage(0)
+                for seconds_left in range(mins * 60, 0, -1):
+                    m, s = seconds_left//60, seconds_left%60
+                    print(f" {m:02d}:{s:02d} ", end="\r")
+                    #if seconds_left == 30:
+                        #play_music("assets/tick.wav")
+                    #if seconds_left == 10:
+                        #play_music("assets/tick.wav")
+                    if seconds_left == 68:
+                        stop_music()  # stop smooth music before tense phase
+                    if seconds_left <= 67:
+                        play_music("assets/tensetick.mp3", loop=True)  # start tense loop
+                    if seconds_left == 5:
+                        play_sound("assets/explosion.mp3")
+                    time.sleep(1)
 
-            input("press enter to continue...")
-            
-        except KeyboardInterrupt:
-            print(" ABORTED!")
-            self.player.take_damage(20)
-            self.game_over()
-            input("Enter to continue...")
+                # Timer ran out
+                stop_all()
+                print("Failed!")
+                choice = input("Extend Time? (Y/N): ")
+                if choice.lower() == "y":
+                    mins = int(input("Extra minutes: "))
+                    continue  # restart the while loop with new mins
+                else:
+                    break  # exit to menu
+
+            except KeyboardInterrupt:
+                stop_all()
+                print(" DEFUSED!")
+                self.player.take_damage(0)
+                break  # exit to menu
+
+        input("Enter to continue...")
 
     def run(self):
         while True:

@@ -17,7 +17,7 @@ def new_account():
     }
     storage.save_account(acc_id, account)
     print("Account created successfully.")
-    return Player(account['name'])
+    return Player(account['acc_id'], account['name'])
 
 #login 
 def login(attempts = 0, account = None ):
@@ -53,7 +53,7 @@ def login(attempts = 0, account = None ):
     print("___________Welcome____________")
     print(f"{account['name']} has logged in successfully.")
     print("___________Welcome____________")
-    return Player(account['name'])
+    return Player(account['acc_id'], account['name'])
     
 #Entry point - choose login or signup
 def authenticate():

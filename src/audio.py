@@ -14,7 +14,7 @@ def play_sound(filename):
     except pygame.error as e:
         print(f"Error loading sound: {e}")
 
-# Play background music
+#Keeping audio errors in check
 def play_music(filename, loop=True):
     try:
         pygame.mixer.music.load(filename)
@@ -26,7 +26,12 @@ def play_music(filename, loop=True):
 def stop_music():
     pygame.mixer.music.stop()
 
-# Set volume (0.0 to 1.0)
+# Stop audio
+def stop_all():
+    pygame.mixer.music.stop()
+    pygame.mixer.stop()
+"""
+# Set volume
 def set_volume(volume):
     pygame.mixer.music.set_volume(volume)
 
@@ -36,11 +41,7 @@ def pause_music():
 
 def resume_music():
     pygame.mixer.music.unpause()
-
-# Check if music is playing
-def is_music_playing():
-    return pygame.mixer.music.get_busy()
-
-# Quit mixer
+"""
+# Quit pygame mixer
 def quit_audio():
     pygame.mixer.quit()
