@@ -10,9 +10,15 @@
         "locked": false
     },
     "1111": {
-        "name": "Boostah",
-        "password": "12345",
+        "name": "Kiki",
+        "password": "2020",
         "acc_id": 1111,
+        "locked": false
+    },
+    "1234": {
+        "name": "hacker",
+        "password": "4321",
+        "acc_id": 1234,
         "locked": false
     }
 }

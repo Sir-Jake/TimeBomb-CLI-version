@@ -1,20 +1,4 @@
 from json import load, dump
-#loading account
-def load_account(acc_id):
-    with open("data/users.json", "r") as f:
-        accounts = load(f)
-        return accounts.get(acc_id)
-
-#saving account
-def save_account(acc_id, account):
-    with open("data/users.json", "r") as f:
-        accounts = load(f)
-    
-    accounts[str(acc_id)] = account
-
-    with open("data/users.json", "w") as f:
-        dump(accounts, f, indent=4)
-
 import json
 import os
 import shutil
@@ -46,6 +30,22 @@ def save_json(filename,data):
     with open(filepath,"w") as f:
         json.dump(data,f,indent=4)#convert python dic to json ,indent add space
 
+#loading_account
+def load_account(acc_id):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+        return accounts.get(acc_id)
+
+#saving account
+def save_account(acc_id, account):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+    
+    accounts[str(acc_id)] = account
+
+    with open("data/users.json", "w") as f:
+        dump(accounts, f, indent=4)
+
 def get_users():
     data=load_json("users.json")
     return data
@@ -57,8 +57,8 @@ def add_tasks(task):
     save_tasks(tasks)
 
 def save_users(users):
-    storage.save_json("users.json",users)
-    print("Users saved successfully.")
+    save_json("users.json",users)
+
 def get_tasks():
     data=load_json("tasks.json")
     return data
