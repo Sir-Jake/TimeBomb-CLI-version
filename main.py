@@ -4,6 +4,7 @@ import time
 from src.audio import init_audio, play_sound, play_music, stop_music, stop_all
 from src import auth
 from src.models import Player
+from src.storage import add_task
 
 
 # ===== MAIN GAME =====
@@ -30,6 +31,12 @@ class Game:
         mins = input("Minutes: ")
         mins = 25 if mins == "" else int(mins)
         
+        new_task = {
+            "task": task,
+            "minutes": mins,
+            "status": "completed"
+        }
+        add_task(self.player.acc_id, new_task)
         #print(f"\n{task} - Ctrl+C to quit")
         
         init_audio()

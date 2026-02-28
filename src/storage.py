@@ -51,9 +51,16 @@ def get_users():
     return data
 
 #save users
-def add_tasks(task):
-    tasks=get_tasks()
-    tasks.append(task)
+def add_task(user_id, task):
+    tasks = get_tasks()
+
+    user_id = str(user_id)  # Ensure string key
+
+    if user_id not in tasks:
+        tasks[user_id] = []
+
+    tasks[user_id].append(task)
+
     save_tasks(tasks)
 
 def save_users(users):
@@ -63,7 +70,7 @@ def get_tasks():
     data=load_json("tasks.json")
     return data
 def save_tasks(tasks):
-    storage.save_json("tasks.json",tasks)
+    save_json("tasks.json",tasks)
     print("Tasks saved successfully.")
 
 def move_file(filename,destination_folder):
