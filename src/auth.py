@@ -1,6 +1,7 @@
 #Authentication
 from time import sleep
-import storage
+from src import storage
+from src.models import Player
 
 #Account creation
 def new_account():
@@ -16,7 +17,7 @@ def new_account():
     }
     storage.save_account(acc_id, account)
     print("Account created successfully.")
-    return account
+    return Player(account['name'])
 
 #login 
 def login(attempts = 0, account = None ):
@@ -52,7 +53,7 @@ def login(attempts = 0, account = None ):
     print("___________Welcome____________")
     print(f"{account['name']} has logged in successfully.")
     print("___________Welcome____________")
-    return account
+    return Player(account['name'])
     
 #Entry point - choose login or signup
 def authenticate():
