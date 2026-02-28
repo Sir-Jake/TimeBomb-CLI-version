@@ -4,7 +4,7 @@ import time
 from src.audio import init_audio, play_sound, play_music, stop_music
 from src import auth
 from src.models import Player
-from src.storage import add_task   # ✅ ADDED
+from src.storage import add_task  
 
 
 # ===== MAIN GAME =====
@@ -32,7 +32,6 @@ class Game:
         
         print(f"\n{task} - {mins}min. Ctrl+C to quit")
         
-        # ✅ SAVE TASK IMMEDIATELY WHEN CREATED
         new_task = {
             "task": task,
             "minutes": mins,
