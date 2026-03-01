@@ -1,3 +1,4 @@
+from json import load, dump
 import json
 import os
 import shutil
@@ -29,19 +30,48 @@ def save_json(filename,data):
     with open(filepath,"w") as f:
         json.dump(data,f,indent=4)#convert python dic to json ,indent add space
 
+#loading_account
+def load_account(acc_id):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+        return accounts.get(acc_id)
+
+#saving account
+def save_account(acc_id, account):
+    with open("data/users.json", "r") as f:
+        accounts = load(f)
+    
+    accounts[str(acc_id)] = account
+
+    with open("data/users.json", "w") as f:
+        dump(accounts, f, indent=4)
+
 def get_users():
     data=load_json("users.json")
     return data
 
 #save users
+def add_task(user_id, task):
+    tasks = get_tasks()
+
+    user_id = str(user_id)  # Ensure string key
+
+    if user_id not in tasks:
+        tasks[user_id] = []
+
+    tasks[user_id].append(task)
+
+    save_tasks(tasks)
+
 def save_users(users):
     save_json("users.json",users)
 
 def get_tasks():
-    return load_json("tasks.json")
-
+    data=load_json("tasks.json")
+    return data
 def save_tasks(tasks):
     save_json("tasks.json",tasks)
+    print("Tasks saved successfully.")
 
 def move_file(filename,destination_folder):
     source_file=os.path.join(DATA_DIR,filename)
