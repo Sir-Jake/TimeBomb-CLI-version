@@ -26,6 +26,11 @@
             "task": "sing",
             "minutes": 200,
             "status": "completed"
+        },
+        {
+            "task": "wqew",
+            "minutes": 3,
+            "status": "completed"
         }
     ]
 }
