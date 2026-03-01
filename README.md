@@ -1,68 +1,64 @@
 # 💣 TimeBomb CLI
 
-A terminal-based game where players race against the clock to complete tasks before they **explode!**
+A productivity timer with a twist — complete your tasks before the bomb explodes, or lose health!
 
-## 🚀 Quick Start
+## How It Works
 
-### 1. Clone the repo
+1. **Login** or create an account
+2. **Add a task** and set a timer
+3. **Complete the task** before time runs out — press `Ctrl+C` to defuse the bomb
+4. **Fail** and you take damage. Run out of health? **Game Over.**
+
+## Features
+
+- ⏱️ Countdown timer with audio cues
+- 🔊 Background music and tense ticking sounds
+- 💾 Task and user data saved to JSON
+- ❤️ Health system — take damage on failure
+- 🔁 Extend time if you need more
+
+## Setup
 
 ```bash
-git clone <repo-url>
+# Clone the repo
+git clone https://github.com/Sir-Jake/TimeBomb-CLI-version.git
 cd TimeBomb-CLI-version
-```
 
-### 2. Create a virtual environment (recommended)
+# Create and activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
 
-```bash
-python -m venv venv
-source venv/bin/activate    # Linux / macOS
-venv\Scripts\activate       # Windows
-```
-
-### 3. Install dependencies
-
-```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Run the game
+python3 main.py
 ```
 
-### 4. Run the game
+## Requirements
 
-```bash
-python -m timebomb_cli.main
-```
+- Python 3.10+
+- pygame
+- colorama
 
-## 🎮 How to Play
-
-1. **Register** a new account or **Login** with existing credentials.
-2. **Create a Task** — give it a description and a time limit (in seconds).
-3. **Start Countdown** — pick a task and race to finish before the timer hits zero!
-4. Press **Enter** when you're done to defuse the bomb. ✅
-5. If time runs out … 💥 **BOOM!**
-
-## 📁 Project Structure
+## Project Structure
 
 ```
-timebomb_cli/
-├── main.py              # The Game Engine
-├── requirements.txt     # Dependencies
-├── README.md            # You are here
-├── .gitignore
-├── data/
-│   ├── users.json       # Player accounts & stats
-│   └── tasks.json       # Active tasks
-├── assets/
-│   ├── tick.wav          # Countdown sound
-│   └── explosion.wav    # Explosion sound
+TimeBomb-CLI-version/
+├── main.py              # Entry point & game loop
+├── requirements.txt
+├── assets/              # Audio files
+├── data/                # User & task data (JSON)
 └── src/
-    ├── __init__.py
-    ├── models.py         # Player & Task classes
-    ├── storage.py        # JSON I/O
-    ├── auth.py           # Login & registration
-    └── audio.py          # Sound effects
+    ├── audio.py         # Sound effects & music
+    ├── auth.py          # Login & account creation
+    ├── models.py        # Player & Task classes
+    └── storage.py       # JSON read/write
 ```
 
-## 🛠️ Tech Stack
+## Developers
 
-- **Python 3.10+**
-- **pygame** — audio playback
-- **colorama** — coloured terminal output
+- **Jake**
+- **Mary**
+- **Asumpta**
+- **Noah**
