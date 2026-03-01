@@ -1,11 +1,8 @@
-import os
-import sys
-import time
+import os, sys, time
 from src.audio import init_audio, play_sound, play_music, stop_music, stop_all
 from src import auth
 from src.models import Player
 from src.storage import add_task
-
 
 # ===== MAIN GAME =====
 class Game:
@@ -19,8 +16,6 @@ class Game:
             print("GAME OVER")
             sys.exit()
       
-        
-
     def timer(self):
         self.clear()
         print("="*40)
