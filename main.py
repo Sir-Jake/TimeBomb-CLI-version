@@ -1,7 +1,6 @@
 import os, sys, time
 from src.audio import init_audio, play_sound, play_music, stop_music, stop_all
-from src import auth
-from src.models import Player
+from src import auth, storage
 from src.storage import add_task
 
 # ===== MAIN GAME =====
@@ -11,10 +10,10 @@ class Game:
     
     def clear(self): os.system('clear')
 
-    def game_over(self):
-        if self.player.health <= 0:
-            print("GAME OVER")
-            sys.exit()
+    def save_health(self):
+        account = storage.load_account(str(self.player.acc_id))
+        account["health"] = self.player.health
+        storage.save_account(self.player.acc_id, account)
       
     def timer(self):
         self.clear()
@@ -63,17 +62,20 @@ class Game:
                 # Timer ran out
                 stop_all()
                 print("Failed!")
+                self.player.take_damage(20)
+                self.save_health()
                 choice = input("Extend Time? (Y/N): ")
                 if choice.lower() == "y":
                     mins = int(input("Extra minutes: "))
                     continue  # restart the while loop with new mins
                 else:
-                    break  # exit to menu
+                    break  # exit to menu       
 
             except KeyboardInterrupt:
                 stop_all()
                 print(" DEFUSED!")
-                self.player.take_damage(0)
+                self.player.heal(10)
+                self.save_health()
                 break  # exit to menu
 
         input("Enter to continue...")

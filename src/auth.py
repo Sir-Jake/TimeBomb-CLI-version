@@ -2,6 +2,7 @@
 from time import sleep
 from src import storage
 from src.models import Player
+import hashlib
 
 #Account creation
 def new_account():
@@ -11,8 +12,9 @@ def new_account():
     
     account = {
         "name": name,
-        "password": password,
+        "password":hashlib.sha256(password.encode()).hexdigest(),
         "acc_id": acc_id,
+        "health": 100,
         "locked": False
     }
     storage.save_account(acc_id, account)
@@ -24,7 +26,7 @@ def login(attempts = 0, account = None ):
     
     if attempts >= 4:
         print("Maximum attempts reached.")
-        print("Contact Jake [> _ *]")
+        print("Contact Admin [> _ *]")
         account["locked"] = True
         storage.save_account(acc_id, account)
         return None
@@ -45,7 +47,7 @@ def login(attempts = 0, account = None ):
         print("Account is locked.")
         return None
 
-    if account["password"] != password:
+    if account["password"] != hashlib.sha256(password.encode()).hexdigest():
         print("Incorrect password.")
         sleep(2)
         return login(attempts + 1)
@@ -53,7 +55,7 @@ def login(attempts = 0, account = None ):
     print("___________Welcome____________")
     print(f"{account['name']} has logged in successfully.")
     print("___________Welcome____________")
-    return Player(account['acc_id'], account['name'])
+    return Player(account['acc_id'], account['name'], account.get('health', 100))
     
 #Entry point - choose login or signup
 def authenticate():
