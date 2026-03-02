@@ -1,6 +1,5 @@
 # Audio module - sound effects using pygame
 import pygame   
-import os
 
 # Initialize pygame mixer
 def init_audio():
@@ -30,18 +29,4 @@ def stop_music():
 def stop_all():
     pygame.mixer.music.stop()
     pygame.mixer.stop()
-"""
-# Set volume
-def set_volume(volume):
-    pygame.mixer.music.set_volume(volume)
 
-# Pause and resume music
-def pause_music():
-    pygame.mixer.music.pause()
-
-def resume_music():
-    pygame.mixer.music.unpause()
-"""
-# Quit pygame mixer
-def quit_audio():
-    pygame.mixer.quit()

@@ -10,15 +10,30 @@
         "locked": false
     },
     "1111": {
-        "name": "Kiki",
-        "password": "2020",
+        "name": "jayya",
+        "password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
         "acc_id": 1111,
-        "locked": false
+        "locked": false,
+        "health": 110
     },
     "1234": {
         "name": "hacker",
         "password": "4321",
         "acc_id": 1234,
+        "locked": false
+    },
+    "2222": {
+        "name": "44",
+        "password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+        "acc_id": 2222,
+        "health": 60,
+        "locked": false
+    },
+    "3333": {
+        "name": "Jelaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "password": "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+        "acc_id": 3333,
+        "health": 110,
         "locked": false
     }
 }
